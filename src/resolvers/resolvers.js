@@ -1,5 +1,3 @@
-import { gql} from 'apollo-server-express';
-
 const user=[
     {
         id:"1",
@@ -38,7 +36,7 @@ const user=[
     },
 ]
 
-export const resolvers ={
+const resolvers ={
     Query: {
         user: (parent,args,context,info)=>{
             return user.filter((user) => user.id.toString() === args.id)[0];
@@ -46,19 +44,6 @@ export const resolvers ={
         users: (parent,args,context,info)=>{return user},
 
      }
-    }
-export const typeDefs = gql`
+    };
 
-    type Query{
-        me:User!
-        user(id:ID!):User
-        users:[User]!       
-    }
-    type User{
-        id:ID!
-        name:String!
-        username:String!
-        password:String!
-        email:String!
-    }
-`;
+    export default resolvers;
