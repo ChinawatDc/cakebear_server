@@ -13,6 +13,7 @@ export const typeDefs = gql`
         password:String!
         email:String!
     }
+    
 `;
 
 export default typeDefs;

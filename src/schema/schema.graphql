@@ -1,12 +1,56 @@
-type Query{
-        me:User!
-        user(id:ID!):User
-        users:[User]!       
-    }
-    type User{
-        id:ID!
-        name:String!
-        username:String!
-        password:String!
-        email:String!
-    }
+type User {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+  email: String!
+
+  product: [Product] #<--- this is relationship //
+}
+type Product {
+  id: ID!
+  name: String!
+  discription: String
+  price: Float!
+
+  user:User! #<---This is relationship
+}
+
+type Query {
+  user(id: ID!): User
+  users: [User]!
+  user_name(name: String!): User
+}
+
+type Mutation {
+  signup(
+    name: String!
+    username: String!
+    password: String!
+    email: String!
+  ): User
+
+  updateUser(
+    id:ID!
+    name: String
+    password: String
+    email: String
+  ): User
+
+  deleteUser(id:ID!):User
+
+  createProduct(
+    name: String!
+    discription: String
+    price: Float!
+  ):Product
+
+  updateProduct(
+    id: ID!
+    name: String
+    discription: String
+    price: Float 
+  ):Product
+
+  deleteProduct(id: ID!): Product
+}
